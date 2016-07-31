@@ -1,0 +1,23 @@
+{
+  "name": "lapsi",
+  "authors": [
+    "sudhir nimavat <sudhir@nimavat.me>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "cloudinary-jquery": "^2.1.2",
+    "underscore": "^1.8.3",
+    "pods.js": "git://github.com/gmac/pods.js.git#^2.0.0",
+    "jquery": "2.2.4"
+  }
+}
