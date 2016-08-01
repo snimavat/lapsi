@@ -5,20 +5,19 @@ import me.nimavat.core.AdminSection
 import me.nimavat.crudify.BaseCrudController
 import me.nimavat.lapsi.LapsiPage
 import me.nimavat.lapsi.TemplateService
+import me.nimavat.lapsi.core.Tenant
 
 @AdminSection(name="Pages", order=2)
 @GrailsCompileStatic
 class PageController extends BaseCrudController<LapsiPage> {
 	static namespace = 'admin'
 
-	private static final String TEST_SITE = "javaprimer"
-
 	TemplateService templateService
 
 	PageController() { super(LapsiPage) }
 
 	Map extraModel(LapsiPage page) {
-		List templates = templateService.templatesForSite(TEST_SITE)
+		List templates = templateService.templatesForSite(Tenant.JAVA_PRIMER)
 		return [templates: templates]
 	}
 

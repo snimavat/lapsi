@@ -1,5 +1,7 @@
 package me.nimavat.lapsi
 
+import grails.plugin.springsecurity.SpringSecurityUtils
+
 
 class LapsiTagLib {
     static namespace = "lp"
@@ -7,7 +9,7 @@ class LapsiTagLib {
     def partial = { attrs, body ->
         String partialName = attrs.partial
         LapsiPage page = attrs.page
-        boolean editMode = attrs.editMode
+        boolean editMode = SpringSecurityUtils.ifAllGranted(Role.ADMIN)
 
         if(editMode) {
             out << """
@@ -29,8 +31,7 @@ class LapsiTagLib {
     def pageLink = { attrs ->
         LapsiPage page = attrs.page
         String url = page.absoluteUri
-        String contentPrefix = "content"
-        out << """<a href="${g.createLink(controller: 'content', params: [url:url])}" class="page-link">${page.name}</a>"""
+        out << """<a href="${g.createLink(controller: 'content', params: [uri:url])}" class="page-link">${page.name}</a>"""
     }
 
 	/**

@@ -9,9 +9,7 @@ import javax.persistence.Transient
 @ToString(includes='authority', includeNames=true, includePackage=false)
 class Role implements Serializable {
 
-	private static final long serialVersionUID = 1
-
-	private static final String ADMIN = "ROLE_ADMIN"
+	public static final String ADMIN = "ROLE_ADMIN"
 
 	String name
 

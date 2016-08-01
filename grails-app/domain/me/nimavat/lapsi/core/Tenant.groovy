@@ -1,6 +1,8 @@
 package me.nimavat.lapsi.core
 
 class Tenant {
+    public static final String JAVA_PRIMER = "javaprimer"
+
     String name
     String domain
 

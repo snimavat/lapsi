@@ -1,18 +1,34 @@
 class UrlMappings {
+    static final String ADMIN_PREFIX = "admin"
+    static final String CONTENT_PREFIX = ""
+
+    static final List<String> FORBIDDEN = [
+            'plugins',
+            'WEB-INF',
+            'assets',
+            'console',
+            'is-tomcat-running',
+            ADMIN_PREFIX
+    ]
 
     static mappings = {
 
         "/login/$action"(controller: "login")
         "/admin/$controller/$action?/$id?(.$format)?"(namespace:"admin")
 
-        String prefix = "content"
+        String prefix = CONTENT_PREFIX //TODO grab from config
         String contentURI = (prefix ? '/' : '') + prefix
 
-        "${contentURI}/$url**"(controller:"content") {
+        "${contentURI}/$uri**"(controller:"content") {
             action = ['GET': 'show', 'POST':'update']
+            constraints {
+                uri(validator: { path ->
+                    return !FORBIDDEN.any { p -> return path?.startsWith(p) }
+                })
+            }
         }
 
-        "/"(view:"/index")
+        "/"(view:"/index") //TODO configure home page
         "500"(view:'/error')
         "404"(view:'/notFound')
     }
