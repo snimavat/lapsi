@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <title>Lapsi admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <asset:stylesheet href="lapsi/admin.css"/>
-    <asset:javascript src="app.js" />
+    <asset:stylesheet href="lapsi/admin/admin.css"/>
+    <asset:javascript src="lapsi/admin/admin.js" />
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top">

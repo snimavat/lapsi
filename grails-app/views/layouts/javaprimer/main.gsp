@@ -6,11 +6,11 @@
 
     <title>${page.name}</title>
 
-    <asset:stylesheet href="lapsi/main.css"/>
+    <asset:stylesheet href="lapsi/bootstrap/css/bootstrap.css"/>
 
     <sec:ifAllGranted roles="ROLE_ADMIN">
-        <asset:stylesheet href="contenttools/content-tools.min.css"/>
-        <asset:javascript src="app.js" />
+        <asset:stylesheet href="lapsi/contenttools/content-tools.min.css"/>
+        <asset:javascript src="lapsi/admin/admin.js" />
     </sec:ifAllGranted>
 
 </head>

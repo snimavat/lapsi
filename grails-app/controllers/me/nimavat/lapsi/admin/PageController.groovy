@@ -11,7 +11,7 @@ import me.nimavat.lapsi.TemplateService
 class PageController extends BaseCrudController<LapsiPage> {
 	static namespace = 'admin'
 
-	private static final String TEST_SITE = "test"
+	private static final String TEST_SITE = "javaprimer"
 
 	TemplateService templateService
 

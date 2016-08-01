@@ -1,9 +1,0 @@
-//= require underscore/underscore-min.js
-//= require jquery/jquery-1.12.0.min.js
-//= require bootstrap-all
-//= require contenttools/content-tools.min.js
-//= require cloudinary-jquery/cloudinary-jquery.min.js
-//= require pods/pods.min.js
-//= require lapsi/lapsi
-//= require_tree lapsi
-//= require_self

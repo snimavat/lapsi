@@ -8,7 +8,7 @@ import org.grails.web.json.JSONObject
 
 class ContentController {
 	static allowedMethods = [show: 'GET', update:'POST']
-	private static final String site = "test"
+	private static final String site = "javaprimer"
 
 	ContentService contentService
 

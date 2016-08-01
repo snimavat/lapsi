@@ -1,8 +1,8 @@
 <%
-    //= template_name Blog
+    //= template_name Home Page
 %>
 
-<g:applyLayout name="test/main" model="[page:page]">
+<g:applyLayout name="javaprimer/main" model="[page:page]">
     <div class="row">
         <div class="col-sm-2">
             <lp:partial page="${page}" partial="sidebar" editMode="${true}">

@@ -1,9 +1,6 @@
 buildscript {
     ext {
         grailsVersion = project.grailsVersion
-        bootstrapFramework = [
-            version             : "3.3.5"
-        ]
     }
     repositories {
         mavenLocal()
@@ -13,7 +10,6 @@ buildscript {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.5.0'
         classpath "org.grails.plugins:hibernate:4.3.10.5"
-        classpath "com.siprell.plugins:bootstrap-framework:1.0.3"
     }
 }
 
@@ -77,14 +73,8 @@ dependencies {
     testCompile "org.grails:grails-plugin-testing"
     testCompile "org.grails.plugins:geb"
 
-    // Note: It is recommended to update to a more robust driver (Chrome, Firefox etc.)
-    testRuntime 'org.seleniumhq.selenium:selenium-htmlunit-driver:2.44.0'
-
     console "org.grails:grails-console"
 }
-
-
-apply plugin: "com.siprell.plugins.bootstrap-framework"
 
 task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Login</title>
-	<asset:stylesheet href="lapsi/login.css"/>
+	<asset:stylesheet href="lapsi/admin/login.css"/>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
