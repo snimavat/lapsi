@@ -8,34 +8,23 @@ buildscript {
     }
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
-        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.5.0'
-        classpath "org.grails.plugins:hibernate:4.3.10.5"
+        classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.8.2"
+        classpath "org.grails.plugins:hibernate4:5.0.10"
     }
-}
-
-plugins {
-    id "io.spring.dependency-management" version "0.5.4.RELEASE"
 }
 
 version "0.1"
 group "lapsi"
 
-apply plugin: "spring-boot"
-apply plugin: "war"
-apply plugin: "asset-pipeline"
-apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: "war"
 apply plugin: "org.grails.grails-web"
 apply plugin: "org.grails.grails-gsp"
+apply plugin: "asset-pipeline"
 
 ext {
     grailsVersion = project.grailsVersion
     gradleWrapperVersion = project.gradleWrapperVersion
-}
-
-assets {
-    minifyJs = true
-    minifyCss = true
 }
 
 repositories {
@@ -43,6 +32,13 @@ repositories {
     maven { url "https://repo.grails.org/grails/core" }
     jcenter()
 }
+
+
+assets {
+    minifyJs = true
+    minifyCss = true
+}
+
 
 dependencyManagement {
     imports {
@@ -56,26 +52,33 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-actuator"
     compile "org.springframework.boot:spring-boot-autoconfigure"
     provided "org.springframework.boot:spring-boot-starter-tomcat"
+
+    compile "org.grails:grails-core"
     compile "org.grails:grails-dependencies"
     compile "org.grails:grails-web-boot"
 
-    compile "org.grails.plugins:hibernate"
-    compile "org.grails.plugins:cache"
-    compile "org.hibernate:hibernate-ehcache"
-    compile "org.grails.plugins:scaffolding"
+    profile "org.grails.profiles:web"
 
     compile "org.grails.plugins:spring-security-core:3.0.3"
-    compile "org.grails.plugins:fields:2.1.2"
 
-    runtime "org.grails.plugins:asset-pipeline"
-    runtime "com.bertramlabs.plugins:coffee-asset-pipeline:2.10.0"
+    compile "org.grails.plugins:cache"
+    compile "org.grails.plugins:scaffolding"
 
-    testCompile "org.grails:grails-plugin-testing"
-    testCompile "org.grails.plugins:geb"
+    runtime "com.h2database:h2"
+    compile "org.grails.plugins:hibernate4"
+    compile "org.hibernate:hibernate-ehcache"
 
     console "org.grails:grails-console"
+    compile "org.grails.plugins:fields:2.1.2"
+
+    runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.10.0"
+    assets "com.bertramlabs.plugins:coffee-asset-pipeline:2.10.0"
+
+    testCompile "org.grails:grails-plugin-testing"
 }
 
+/*
 task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion
 }
+*/

@@ -30,8 +30,8 @@ class LapsiTagLib {
      */
     def pageLink = { attrs ->
         LapsiPage page = attrs.page
-        String url = page.absoluteUri
-        out << """<a href="${g.createLink(controller: 'content', params: [uri:url])}" class="page-link">${page.name}</a>"""
+        String uri = page.absoluteUri
+        out << """<a href="${g.createLink(uri: uri)}" class="page-link">${page.name}</a>"""
     }
 
 	/**

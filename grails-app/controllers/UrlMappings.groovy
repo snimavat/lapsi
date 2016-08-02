@@ -8,6 +8,7 @@ class UrlMappings {
             'assets',
             'console',
             'is-tomcat-running',
+            'logoff',
             ADMIN_PREFIX
     ]
 

@@ -73,7 +73,8 @@ class LapsiPage implements Serializable{
 
     @Transient
     String getAbsoluteUri() {
-        return space.uri + "/" + url
+        String spaceUri = space.uri ? "/" + space.uri : ""
+        return spaceUri + "/" + url
     }
 
 }

@@ -1,8 +1,10 @@
 package me.nimavat.lapsi
 
-import org.springframework.stereotype.Service
+import groovy.util.logging.Slf4j
+import org.springframework.stereotype.Component
 
-@Service
+@Slf4j
+@Component
 class TemplateParser {
 
     public Map<String, String> metaInfoForLayoutContents(layout, contents) {

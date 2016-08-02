@@ -9,7 +9,10 @@ appender('STDOUT', ConsoleAppender) {
 }
 
 root(ERROR, ['STDOUT'])
-logger("grails.app", DEBUG, ['STDOUT'], false)
+logger("grails.app.controllers.me.nimavat", DEBUG, ['STDOUT'], false)
+logger("grails.app.services.me.nimavat", DEBUG, ['STDOUT'], false)
+logger("grails.app.tagLibs.me.nimavat", DEBUG, ['STDOUT'], false)
+logger("me.nimavat", DEBUG, ['STDOUT'], false)
 
 def targetDir = BuildSettings.TARGET_DIR
 if (Environment.isDevelopmentMode() && targetDir) {
