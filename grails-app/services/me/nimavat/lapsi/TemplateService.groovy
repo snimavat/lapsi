@@ -20,7 +20,8 @@ class TemplateService {
             Map meta = templateParser.metaInfoForLayoutContents(layout, contents)
             if (meta) {
                 layoutMetaList << meta + [layout: layout]
-
+            } else {
+                log.debug "No directive found in layout file $layout"
             }
         }
         return layoutMetaList

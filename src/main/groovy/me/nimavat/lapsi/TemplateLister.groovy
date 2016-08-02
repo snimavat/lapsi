@@ -22,6 +22,7 @@ class TemplateLister {
         return scanForTemplates(scanPaths(siteName))
     }
 
+    //TODO change to do LayoutFinder for dev/prod env
     List<String> scanPaths(String siteName) {
         List paths = []
         if(Environment.warDeployed) {
