@@ -7,7 +7,4 @@ beans = {
     context.'component-scan'('base-package': "me.nimavat")
 
     userDetailsService(LapsiUserDetailsService)
-    templateLister(TemplateLister) {
-        grailsApplication = ref("grailsApplication")
-    }
 }

@@ -6,7 +6,10 @@
 
     <title>${page.name}</title>
 
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Lora' rel='stylesheet' type='text/css'>
+
     <asset:stylesheet href="lapsi/bootstrap/css/bootstrap.css"/>
+    <asset:stylesheet href="javaprimer/style.css"/>
 
     <sec:ifAllGranted roles="ROLE_ADMIN">
         <asset:stylesheet href="lapsi/contenttools/content-tools.min.css"/>
@@ -15,18 +18,22 @@
 
 </head>
 <body>
-<nav class="navbar navbar-default navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Lapsi CMS</a>
+<div class="container header">
+<div class="col-md-6 col-md-offset-3">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1" style="text-align: center">
+            <h1>Java Primer</h1>
         </div>
-    </div><!-- /.container-fluid -->
-</nav>
+    </div>
 
-<div class="container main-content">
+</div>
+</div>
+<div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <g:layoutBody/>
+            <div class="main-content">
+                <g:layoutBody/>
+            </div>
         </div>
     </div>
 </div>
