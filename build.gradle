@@ -10,8 +10,10 @@ buildscript {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.8.2"
         classpath "org.grails.plugins:hibernate4:5.0.10"
+        classpath 'org.grails.plugins:database-migration:2.0.0.BUILD-SNAPSHOT'
     }
 }
+
 
 version "0.1"
 group "lapsi"
@@ -39,6 +41,13 @@ assets {
     minifyCss = true
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDir 'grails-app/migrations'
+        }
+    }
+}
 
 dependencyManagement {
     imports {
@@ -59,12 +68,13 @@ dependencies {
 
     profile "org.grails.profiles:web"
 
+    runtime 'org.grails.plugins:database-migration:2.0.0.BUILD-SNAPSHOT'
     compile "org.grails.plugins:spring-security-core:3.0.3"
 
     compile "org.grails.plugins:cache"
     compile "org.grails.plugins:scaffolding"
 
-    runtime "com.h2database:h2"
+
     compile "org.grails.plugins:hibernate4"
     compile "org.hibernate:hibernate-ehcache"
 
@@ -73,6 +83,8 @@ dependencies {
 
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.10.0"
     assets "com.bertramlabs.plugins:coffee-asset-pipeline:2.10.0"
+
+    runtime 'mysql:mysql-connector-java:5.1.29'
 
     testCompile "org.grails:grails-plugin-testing"
 }

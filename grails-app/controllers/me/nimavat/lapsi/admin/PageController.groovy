@@ -22,12 +22,12 @@ class PageController extends BaseCrudController<LapsiPage> {
 	}
 
 	protected boolean  onSave(LapsiPage page) {
-		if(page && page.url && page.url.startsWith("/")) page.url = page.url - "/"
+		if(page && page.uri && page.uri.startsWith("/")) page.uri = page.uri - "/"
 		return super.onSave(page)
 	}
 
 	protected boolean onUpdate(LapsiPage page) {
-		if(page && page.url && page.url.startsWith("/")) page.url = page.url - "/"
+		if(page && page.uri && page.uri.startsWith("/")) page.uri = page.uri - "/"
 		return super.onUpdate(page)
 	}
 

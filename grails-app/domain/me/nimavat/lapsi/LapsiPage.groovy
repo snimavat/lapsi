@@ -12,7 +12,7 @@ class LapsiPage implements Serializable{
     String name
 
     @BindingFormat("lowercase")
-    String url
+    String uri
     String template
 
     String draft
@@ -36,12 +36,14 @@ class LapsiPage implements Serializable{
 
     static mapping = {
         content type: "text"
+        uri index: "uri_idx"
+        space index: "uri_idx"
     }
 
     static constraints = {
         template nullable: false, blank: false
         name blank: false
-        url blank: false, unique: "space"
+        uri blank: false, unique: "space"
 
         metaDescription nullable: true, widget:"textarea"
         metaKeywords nullable: true, widget:"textarea"
@@ -77,7 +79,7 @@ class LapsiPage implements Serializable{
     @Transient
     String getAbsoluteUri() {
         String spaceUri = space.uri ? "/" + space.uri : ""
-        return spaceUri + "/" + url
+        return spaceUri + "/" + uri
     }
 
 }

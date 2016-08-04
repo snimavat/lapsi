@@ -9,25 +9,26 @@ hibernate:
 dataSource:
     pooled: true
     jmxExport: true
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
+    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
+    password: root
 
 environments:
     development:
         dataSource:
-            dbCreate: create-drop
-            url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            dbCreate: none
+            url: jdbc:mysql://localhost:3306/javaprimer
     test:
         dataSource:
-            dbCreate: update
-            url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            dbCreate: none
+            url: jdbc:mysql://localhost:3306/javaprimer_test
     production:
         dataSource:
-            dbCreate: update
-            url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            dbCreate: none
+            url: jdbc:mysql://localhost:3306/javaprimer
             properties:
-                jmxEnabled: true
+                jmxEnabled: false
                 initialSize: 5
                 maxActive: 50
                 minIdle: 5

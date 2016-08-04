@@ -6,6 +6,10 @@
 
     <title>${page.name}</title>
 
+    <meta name="description" content="${page.metaDescription}">
+    <meta name="keywords" content="${page.metaKeywords}">
+
+
     <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Lora' rel='stylesheet' type='text/css'>
 
     <asset:stylesheet href="lapsi/bootstrap/css/bootstrap.css"/>

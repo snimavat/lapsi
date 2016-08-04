@@ -58,6 +58,16 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 
 grails.plugin.springsecurity.active = true
 
+grails.plugin.databasemigration.updateOnStart = true
+grails.plugin.databasemigration.updateOnStartFileNames = ["changelog.groovy"]
+
+environments {
+	test {
+		//for test env, delete and recreate db.
+		grails.plugin.databasemigration.dropOnStart = true
+	}
+}
+
 lapsi {
 	//The page which should be used as home page
 	homePage = "home-page"

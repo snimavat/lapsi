@@ -14,16 +14,16 @@ class ContentService {
 
 	TemplateRenderer templateRenderer
 
-	@Cacheable(value = 'pagecontent', key = "#site.concat('-').concat(#url)", condition = "#cache == true")
-	public String renderPage(String site, String url, boolean cache = true) {
-		return renderPage(site, findPage(url))
+	@Cacheable(value = 'pagecontent', key = "#site.concat('-').concat(#uri)", condition = "#cache == true")
+	public String renderPage(String site, String uri, boolean cache = true) {
+		return renderPage(site, findPage(uri))
 	}
 
 	@CompileDynamic
 	Map<String, String> findSpaceAndUri(String uri) {
 		String actualUri = uri
 
-		log.debug("Resolving space and uri for url $actualUri")
+		log.debug("Resolving space and uri for uri $actualUri")
 
 		if (StringUtils.isBlank(uri)) return [space: LapsiSpace.DEFAULT.name, uri: LapsiUtils.lapsiConfig.homePage]
 
@@ -32,7 +32,7 @@ class ContentService {
 		String spaceUri
 		String spaceName
 
-		//it is a url like  hello-world.html etc - without "/"
+		//it is a uri like  hello-world.html etc - without "/"
 		if (!uri.contains(PATH_SEPERATOR)) {
 
 			log.debug "Request received for uri without space $uri"
@@ -50,14 +50,14 @@ class ContentService {
 				uri = spaceUri + PATH_SEPERATOR + uri
 				spaceName = LapsiSpace.DEFAULT.name
 			} else {
-				//url contains a space name, which exists
+				//uri contains a space name, which exists
 				spaceName = space.name
 				log.debug "Found space $spaceName for uri $actualUri"
 			}
 
 		}
 
-		log.info "Resolved space:$spaceName, page:$uri for url:$actualUri"
+		log.info "Resolved space:$spaceName, page:$uri for uri:$actualUri"
 		return [space: spaceName, uri: uri]
 
 	}
@@ -67,15 +67,15 @@ class ContentService {
 		return templateRenderer.render(site, page.template, [page: page])
 	}
 
-	@CacheEvict(value = "pagecontent", key = "#site.concat('-').concat(#url)")
-	public LapsiPage updateContent(String site, String url, JSONObject json) {
-		updateContent(site, findPage(url), json)
+	@CacheEvict(value = "pagecontent", key = "#site.concat('-').concat(#uri)")
+	public LapsiPage updateContent(String site, String uri, JSONObject json) {
+		updateContent(site, findPage(uri), json)
 	}
 
 	LapsiPage findPage(String uri) {
 		Map<String, String> spaceAndUri = findSpaceAndUri(uri)
 		LapsiSpace space = LapsiSpace.findByName(spaceAndUri.space)
-		LapsiPage page = LapsiPage.findBySpaceAndUrl(space, spaceAndUri.uri)
+		LapsiPage page = LapsiPage.findBySpaceAndUri(space, spaceAndUri.uri)
 
 		if(!page) {
 			throw new ContentNotFoundException(uri)

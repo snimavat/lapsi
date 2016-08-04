@@ -12,7 +12,7 @@
 
 <f:with bean="entityInstance">
 	<f:field property="name"/>
-	<f:field property="url"/>
+	<f:field property="uri"/>
 	<f:field property="metaKeywords"/>
 	<f:field property="metaDescription"/>
 </f:with>
