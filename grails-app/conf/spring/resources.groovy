@@ -1,4 +1,3 @@
-import me.nimavat.lapsi.TemplateLister
 import me.nimavat.springsecurity.LapsiUserDetailsService
 
 // Place your Spring DSL code here

@@ -41,10 +41,12 @@ class LapsiPage implements Serializable{
     static constraints = {
         template nullable: false, blank: false
         name blank: false
-        url blank: false
+        url blank: false, unique: "space"
+
         metaDescription nullable: true, widget:"textarea"
         metaKeywords nullable: true, widget:"textarea"
         content blank: true, nullable: true
+
         draft blank: true, nullable: true
 
         parent nullable: true
@@ -53,6 +55,7 @@ class LapsiPage implements Serializable{
         lastUpdated nullable: true
     }
 
+    //TODO use Groovy Lazy
     def beforeValidate() {
         content = json ? json.toString() : null
     }

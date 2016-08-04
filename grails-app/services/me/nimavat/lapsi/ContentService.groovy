@@ -5,6 +5,7 @@ import grails.plugin.cache.CacheEvict
 import grails.plugin.cache.Cacheable
 import grails.transaction.Transactional
 import groovy.transform.CompileDynamic
+import org.apache.commons.lang.StringUtils
 import org.grails.web.json.JSONObject
 
 @GrailsCompileStatic
@@ -24,14 +25,14 @@ class ContentService {
 
 		log.debug("Resolving space and uri for url $actualUri")
 
-		if (uri == null) return [space: "default", uri: ""]
+		if (StringUtils.isBlank(uri)) return [space: LapsiSpace.DEFAULT.name, uri: LapsiUtils.lapsiConfig.homePage]
 
 		if (uri.startsWith("/")) uri = (uri - PATH_SEPERATOR)
 
 		String spaceUri
 		String spaceName
 
-		//it is a url like /hello-world.html etc - without "/"
+		//it is a url like  hello-world.html etc - without "/"
 		if (!uri.contains(PATH_SEPERATOR)) {
 
 			log.debug "Request received for uri without space $uri"

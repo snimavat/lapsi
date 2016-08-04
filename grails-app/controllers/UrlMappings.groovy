@@ -14,6 +14,7 @@ class UrlMappings {
 
     static mappings = {
 
+        //"/"(controller: "home")
         "/login/$action"(controller: "login")
         "/admin/$controller/$action?/$id?(.$format)?"(namespace:"admin")
 
@@ -29,7 +30,6 @@ class UrlMappings {
             }
         }
 
-        "/"(view:"/index") //TODO configure home page
         "500"(view:'/error')
         "404"(view:'/notFound')
     }

@@ -57,3 +57,8 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 ]
 
 grails.plugin.springsecurity.active = true
+
+lapsi {
+	//The page which should be used as home page
+	homePage = "home-page"
+}

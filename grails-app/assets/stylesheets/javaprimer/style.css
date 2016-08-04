@@ -1,6 +1,6 @@
 body, html {
-    background-color: #F9F9F6;
-    color: #434340;
+    background-color: #f9f9f9;
+    color: #463F30;
 
     font-family: 'Lora', sans-serif;
     font-size: 16px;
@@ -19,21 +19,15 @@ p {
     margin-bottom: 1em;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
     color: #5D8A4E;
     font-family: 'Open Sans Condensed', sans-serif;
     margin-bottom: 0.5em;
+}
+
+a {
+    color: #4B771F;
 }
 
 h1 {

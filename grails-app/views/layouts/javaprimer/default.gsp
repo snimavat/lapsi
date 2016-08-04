@@ -1,5 +1,5 @@
 <%
-    //= template_name Template with side bar
+    //= template_name javaprimer_default
 %>
 
 <g:applyLayout name="javaprimer/main" model="[page:page]">

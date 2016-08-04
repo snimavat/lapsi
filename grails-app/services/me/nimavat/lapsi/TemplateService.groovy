@@ -27,4 +27,15 @@ class TemplateService {
         return layoutMetaList
     }
 
+	/**
+     * Find a Layout gsp file by given template name
+     * @return
+     */
+    String layoutFileByName(String site, String name) {
+        List<Map> all = templatesForSite(site)
+        Map map = all.find { it.name == name}
+        if(map) return map.layout
+        else return null
+    }
+
 }

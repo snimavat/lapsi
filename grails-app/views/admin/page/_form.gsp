@@ -7,7 +7,7 @@
 
 <div class="form-group">
 	<label>Select template</label>
-	<g:select name="template" from="${templates}" class="form-control" optionKey="layout" optionValue="name" required="true" value="${entityInstance.template}"/>
+	<g:select name="template" from="${templates}" class="form-control" optionKey="name" optionValue="name" required="true" value="${entityInstance.template}"/>
 </div>
 
 <f:with bean="entityInstance">
