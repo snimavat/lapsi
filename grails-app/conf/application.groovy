@@ -61,6 +61,8 @@ grails.plugin.springsecurity.active = true
 grails.plugin.databasemigration.updateOnStart = true
 grails.plugin.databasemigration.updateOnStartFileNames = ["changelog.groovy"]
 
+grails.config.locations = ["classpath:lapsi-config.groovy"]
+
 environments {
 	test {
 		//for test env, delete and recreate db.
