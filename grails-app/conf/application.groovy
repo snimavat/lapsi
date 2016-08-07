@@ -73,4 +73,12 @@ environments {
 lapsi {
 	//The page which should be used as home page
 	homePage = "home-page"
+
+	//can be overriden in external config
+	admin {
+		defaultUser {
+			username = "admin"
+			password = "admin123"
+		}
+	}
 }

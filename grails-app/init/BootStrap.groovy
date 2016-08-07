@@ -1,4 +1,5 @@
 import me.nimavat.lapsi.LapsiSpace
+import me.nimavat.lapsi.LapsiUtils
 import me.nimavat.lapsi.Role
 import me.nimavat.lapsi.User
 
@@ -11,7 +12,10 @@ class BootStrap {
             space.save(failOnError:true, flush:true)
         }
 
-        User admin = User.findByUsername("admin")
+        String defaultAdminUsername = LapsiUtils.lapsiConfig.admin.defaultUser.username
+        String defaultAdminUserPWd = LapsiUtils.lapsiConfig.admin.defaultUser.password
+
+        User admin = User.findByUsername(defaultAdminUsername)
 
         Role adminRole = Role.findByName("ADMIN")
         Role userRole = Role.findByName("USER")
@@ -28,7 +32,7 @@ class BootStrap {
         }
 
         if(!admin){
-            admin = new User(username: "admin", password: "admin123", email:"sudhir@nimavat.me")
+            admin = new User(username: defaultAdminUsername, password: defaultAdminUserPWd, email:"sudhir@nimavat.me")
             admin.save(flush:true, failOnError: true)
             admin.grantRole(userRole)
             admin.grantRole(adminRole)
