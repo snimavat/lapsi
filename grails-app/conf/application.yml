@@ -26,7 +26,7 @@ environments:
     production:
         dataSource:
             dbCreate: none
-            url: jdbc:mysql://localhost:3306/javaprimer
+            #url: jdbc:mysql://localhost:3306/javaprimer -- for prod, must specify in external config
             properties:
                 jmxEnabled: false
                 initialSize: 5
