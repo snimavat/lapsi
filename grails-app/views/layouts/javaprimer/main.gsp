@@ -9,6 +9,7 @@
     <meta name="description" content="${page.metaDescription}">
     <meta name="keywords" content="${page.metaKeywords}">
 
+    <asset:link rel="shortcut icon" href="lapsi/favicon.ico" type="image/x-icon"/>
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Lora' rel='stylesheet' type='text/css'>
 

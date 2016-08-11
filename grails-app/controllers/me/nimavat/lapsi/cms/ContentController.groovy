@@ -26,6 +26,8 @@ class ContentController {
 		}
 
 		JSONObject json = request.JSON
+
+		log.debug "Updating content of page $uri"
 		contentService.updateContent(site, uri, json.regions)
 		render status: 204
 	}

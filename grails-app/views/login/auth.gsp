@@ -3,6 +3,7 @@
 <head>
 	<title>Login</title>
 	<asset:stylesheet href="lapsi/admin/login.css"/>
+	<asset:link rel="shortcut icon" href="lapsi/favicon.ico" type="image/x-icon"/>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>

@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Lapsi admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Lapsi admin</title>
+
+    <asset:link rel="shortcut icon" href="lapsi/favicon.ico" type="image/x-icon"/>
+
     <asset:stylesheet href="lapsi/admin/admin.css"/>
     <asset:javascript src="lapsi/admin/admin.js" />
 </head>
