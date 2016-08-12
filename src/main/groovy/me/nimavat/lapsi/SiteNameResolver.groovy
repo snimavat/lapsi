@@ -1,5 +1,6 @@
 package me.nimavat.lapsi
 
+import groovy.transform.CompileStatic
 import org.springframework.stereotype.Component
 import org.springframework.web.context.request.RequestAttributes
 import org.springframework.web.context.request.RequestContextHolder
@@ -10,6 +11,7 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 @Component("siteNameResolver")
+@CompileStatic
 class SiteNameResolver {
 	//matches (xx.)(xx).(com|me|net) etc
 	private static final Pattern regex = ~/^(([^.]+)\.)?(([^.]+)\.(com|org|net|me))$/
@@ -20,7 +22,7 @@ class SiteNameResolver {
 		if(!request) {
 			RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes()
 			if(requestAttributes instanceof ServletWebRequest) {
-				request = requestAttributes.request
+				request = requestAttributes.getRequest()
 			}
 		}
 
