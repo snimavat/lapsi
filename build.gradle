@@ -45,6 +45,7 @@ sourceSets {
     main {
         resources {
             srcDir 'grails-app/migrations'
+            srcDir 'grails-app/blocks'
         }
     }
 }

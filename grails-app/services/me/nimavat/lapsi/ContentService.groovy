@@ -1,17 +1,20 @@
 package me.nimavat.lapsi
 
 import grails.compiler.GrailsCompileStatic
+import grails.core.GrailsApplication
 import grails.plugin.cache.CacheEvict
 import grails.plugin.cache.Cacheable
 import grails.transaction.Transactional
 import groovy.transform.CompileDynamic
 import org.apache.commons.lang.StringUtils
 import org.grails.web.json.JSONObject
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory
 
 @GrailsCompileStatic
 class ContentService {
 	private static final String PATH_SEPERATOR = "/"
 
+	GrailsApplication grailsApplication
 	TemplateRenderer templateRenderer
 
 	@Cacheable(value = 'pagecontent', key = "#site.concat('-').concat(#uri)", condition = "#cache == true")
@@ -95,6 +98,53 @@ class ContentService {
 	@Transactional(readOnly = true)
 	LapsiSpace findSpaceByUri(String spaceUri) {
 		return LapsiSpace.findByUri(spaceUri)
+	}
+
+
+	@CompileDynamic
+	List<String> findBlocks(String site) {
+		ConfigObject siteConfig = LapsiUtils.lapsiConfig.sites[site]
+		List blocks = []
+		if(siteConfig.isSet('blocks')) {
+			blocks = siteConfig.blocks.collect {Class<Block> blockClass ->
+				Block b = blockClass.newInstance()
+				return b.name
+			}
+		}
+
+		return blocks
+	}
+
+	@CompileDynamic
+	Block findBlock(String site, String name) {
+		ConfigObject siteConfig = (ConfigObject)LapsiUtils.lapsiConfig.sites[site]
+		Class<Block> blockClass
+		Block block
+
+		if(siteConfig.isSet('blocks')) {
+			 blockClass = siteConfig.blocks.find {Class<Block> bc ->
+				Block b = bc.newInstance()
+				return b.name == name
+			}
+
+			if(blockClass != null) {
+				block = blockClass.newInstance()
+				int byName = AutowireCapableBeanFactory.AUTOWIRE_BY_NAME
+				grailsApplication.mainContext.autowireCapableBeanFactory.autowireBeanProperties(block, byName, false)
+			}
+		}
+
+		return block
+	}
+
+	public String renderBlock(String site, String blockName) {
+		Block block = LapsiBlock.findByName(blockName)
+		if(block) {
+			return block.content
+		} else {
+			block = findBlock(site, blockName)
+			return  block ? templateRenderer.renderBlock(site, block, null) : ""
+		}
 	}
 
 }

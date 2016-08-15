@@ -18,10 +18,19 @@ class ApplicationConfigurationLoader {
 			def applicationGroovy = application.getClass().classLoader.getResource('application.groovy')
 			if (applicationGroovy) {
 				def applicationConfiguration = new ConfigSlurper(grails.util.Environment.current.name).parse(applicationGroovy)
-				for (String configLocation in applicationConfiguration.grails.config.locations) {
-					Resource configurationResource = resourceLocator.findResourceForURI(configLocation)
-					if (configurationResource) {
-						def config = new ConfigSlurper(grails.util.Environment.current.name).parse(configurationResource.getURL())
+				for (def configLocation in applicationConfiguration.grails.config.locations) {
+					ConfigObject config
+					if(configLocation instanceof Class) {
+						config = new ConfigSlurper(grails.util.Environment.current.name).parse(configLocation)
+						configLocation = configLocation.simpleName
+					} else if (configLocation instanceof String) {
+						Resource configurationResource = resourceLocator.findResourceForURI(configLocation)
+						if (configurationResource) {
+							config = new ConfigSlurper(grails.util.Environment.current.name).parse(configurationResource.getURL())
+						}
+					}
+
+					if(config) {
 						environment.propertySources.addFirst(new MapPropertySource(configLocation, config))
 					} else {
 						log.warn "No configuration file found : $configLocation"

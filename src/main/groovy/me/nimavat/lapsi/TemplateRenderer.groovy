@@ -26,4 +26,12 @@ class TemplateRenderer {
         String path = "/layouts/${site}/$layoutFile"
         return  groovyPageRenderer.render([view:path, model:model])
     }
+
+    String renderBlock(String site, Block block, LapsiPage page) {
+        assert block != null
+        Map model = block.model ?: [:]
+
+        String path = "/blocks/${site}/$block.name"
+        groovyPageRenderer.render([template: path, model: model])
+    }
 }

@@ -1,11 +1,11 @@
 package me.nimavat.lapsi.cms
 
 import grails.plugin.springsecurity.SpringSecurityUtils
+
 import me.nimavat.lapsi.ContentNotFoundException
 import me.nimavat.lapsi.ContentService
 import me.nimavat.lapsi.Role
 import me.nimavat.lapsi.SiteNameResolver
-import me.nimavat.lapsi.core.Tenant
 import org.grails.web.json.JSONObject
 
 class ContentController {

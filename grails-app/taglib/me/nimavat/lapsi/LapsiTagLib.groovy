@@ -6,14 +6,16 @@ import grails.plugin.springsecurity.SpringSecurityUtils
 class LapsiTagLib {
     static namespace = "lp"
 
+    ContentService contentService
+
     def partial = { attrs, body ->
         String partialName = attrs.partial
         LapsiPage page = attrs.page
-        boolean editMode = SpringSecurityUtils.ifAllGranted(Role.ADMIN)
+        boolean editMode = attrs.editMode != null ? attrs.editMode : SpringSecurityUtils.ifAllGranted(Role.ADMIN)
 
         if(editMode) {
             out << """
-                    <div data-editable data-name="${partialName}">
+                    <div data-editable data-name="${partialName}" class="${attrs['class'] ?: ''}">
                        ${page.partial(partialName) ?: body()}
                      </div>
                 """
@@ -39,12 +41,7 @@ class LapsiTagLib {
      */
     def block = { attrs ->
         String blockName = attrs.name
-        LapsiBlock block = LapsiBlock.findByName(blockName)
-        if(block) {
-            out << block.content
-        } else {
-            log.warn "No block found with name $blockName"
-        }
+        out << contentService.renderBlock("nimavat", blockName)
     }
 
 }

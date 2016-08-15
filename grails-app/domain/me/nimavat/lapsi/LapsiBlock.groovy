@@ -2,7 +2,7 @@ package me.nimavat.lapsi
 
 import grails.databinding.BindingFormat
 
-class LapsiBlock {
+class LapsiBlock implements Block {
 
 	@BindingFormat("lowercase")
 	String name
@@ -13,6 +13,9 @@ class LapsiBlock {
 	String description
 	String content
 
+
+	static transients = ['model']
+
 	static mapping = {
 		content type: "text"
 	}
@@ -22,5 +25,10 @@ class LapsiBlock {
 		subject nullable: true, blank: false
 		description nullable: true, widget: "textarea"
 		content nullable: false, blank: false, widget: "textarea"
+	}
+
+
+	Map getModel() {
+		return [content: content, subject:subject]
 	}
 }
